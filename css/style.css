@@ -1,0 +1,167 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+footer {
+  bottom: 0px;
+  color: #eee;
+  padding: 20px;
+}
+
+body {
+  height: 100%;
+  background-color: #eeeeee;
+}
+
+.navbar-dark, .bg-dark {
+  background-color: #222!important;
+} 
+
+.shows-page {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  padding: 3em;
+  margin-top: 80px;
+}
+
+.shows-page h1 {
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.show-page img {
+  padding: 35px;
+}
+
+.icon-show {
+  margin: 1em 3em 0 0;
+}
+
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.topright p {
+  margin:  8px;
+  position: absolute;
+  z-index: 1;
+  color: #222;
+}
+
+.topright i {
+  position: relative;
+}
+
+.serie img {
+  box-shadow: 5px 5px 10px -1px rgba(0,0,0,0.75);
+}
+
+.serie:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-top: 4px solid rgba(192, 0, 0, 1);
+  border-bottom: 4px solid rgba(192, 0, 0, 1);
+  transform: scaleX(0);
+  transition: 0.5s;
+}
+
+.serie:hover:before {
+  transform: scaleX(1);
+}
+
+
+.serie:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-right: 4px solid rgba(192, 0, 0, 1);
+  border-left: 4px solid rgba(192, 0, 0, 1);
+  transform: scaleY(0);
+  transition: 0.5s;
+}
+
+.serie:hover:after {
+  transform: scaleY(1);
+}
+
+.serie {
+  position: relative;
+  cursor: pointer;
+  margin: 25px;
+}
+
+.fa-star {
+  position: relative;
+  color: #e4bb24;
+  font-size: 2.3em;
+}
+
+.actor {
+  width: 250px;
+  margin: 10px;
+}
+.actor img {
+  width: 60px;
+  margin-right: 10px
+}
+
+.actor p {
+  margin-bottom: 0;
+}
+
+.form-inline .form-control {
+  width: 400px;
+}
+
+.episodios {
+  margin-top: 20px;
+}
+
+.scrollToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  background: rgba(192, 0, 0, 1);
+  color: #222;
+  font-size: 2em;
+  display: none;
+}
+
+.scrollToTop:hover {
+  background: #222;
+  color: rgba(192, 0, 0, 1);
+}
+
+.btn-outline-danger {
+  color: rgba(192, 0, 0, 1);
+}
+
+.btn-outline-danger:hover {
+  background-color: rgba(192, 0, 0, 1);
+}
