@@ -9,7 +9,7 @@ a {
 }
 
 footer {
-  bottom: 0px;
+  bottom: 0;
   color: #eee;
   padding: 20px;
 }
@@ -96,8 +96,8 @@ body {
   width: 100%;
   height: 100%;
   border: none;
-  border-right: 4px solid rgba(192, 0, 0, 1);
-  border-left: 4px solid rgba(192, 0, 0, 1);
+  border-right: 4px solid #222;
+  border-left: 4px solid #222;
   transform: scaleY(0);
   transition: 0.5s;
 }
@@ -159,9 +159,30 @@ body {
 }
 
 .btn-outline-danger {
-  color: rgba(192, 0, 0, 1);
+  background-color: rgba(192, 0, 0, 1);
+  color: #CCC;
 }
 
 .btn-outline-danger:hover {
-  background-color: rgba(192, 0, 0, 1);
+  color: #CCC);
+}
+
+.search-show:focus {
+  background-color: #CCC;
+  
+}
+
+.search-show, .btn-search {
+  box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.75);
+  border-radius: 50px;
+}
+
+.btn-search {
+  position: relative;
+  right: 42px;
+}
+
+.navbar span {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5em;
 }

@@ -5,7 +5,7 @@ const btnSearch = document.querySelector('.btn-search')
 const searchShow = document.querySelector('.search-show')
 
 /* API's */
-const all = 'http://api.tvmaze.com/shows'
+const rating = 'http://api.tvmaze.com/shows'
 const search = (nome) => `http://api.tvmaze.com/search/shows?q=${nome}`
 const cast = (id) => `http://api.tvmaze.com/shows/${id}/cast`
 const eps = (id) => `http://api.tvmaze.com/shows/${id}/episodes`
@@ -22,7 +22,7 @@ function favorite(url) {
 }
 
 
-favorite(all)
+favorite(rating)
 
 /* Funções de inserção no HTML */
 
@@ -41,46 +41,16 @@ function favoritePage(json) {
 }
 
 
-/* Pesquisa */
-
-async function searchBar(valor) {
-  showsPage.innerHTML = ''
-  if (validarSerie(valor)) {
-    event.preventDefault()
-    await fetch(search(valor))
-      .then(res => res.json())
-      .then(json => getBusca(json))
-  } else {
-    alert('O nome não pode começar com simbolos!')
-  }
-}
-
-function getBusca(json) {
-  json.map(serie => {
-    serie = serie.show
-    if (serie.rating.average != null) {
-      let text = `
-        <div class="serie mr-2 autoplay" onclick="colocarSerie('${serie.name}')">
-          <img class="rounded float-left" src="${serie.image.medium}" alt="Imagem serie">
-          <div class="topright text-center"><p>${serie.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
-        </div>
-        `
-      showsPage.insertAdjacentHTML('beforeend', text)
-    }
-  })
-}
-
 /* TV Show Page */
 
-btnSearch.addEventListener('click', () => searchBar(searchShow.value))
-//btnSearch.addEventListener('click', () => colocarSerie(searchShow.value))
+btnSearch.addEventListener('click', () => colocarSerie(searchShow.value))
 
 
 function colocarSerie(valor) {
   if (validarSerie(valor)) {
     showsPage.innerHTML = ''
-    //this.blur()
-    event.preventDefault()
+    this.blur()
+    //event.preventDefault()
     let url = `http://api.tvmaze.com/search/shows?q=${valor}`
     fetch(url)
       .then(res => res.json())
@@ -202,12 +172,13 @@ function setEps(id) {
 }
 
 */
+
 /*  Barra de pesquisa */
 
-/* searchShow.addEventListener('keyup', (event) => {
-  searchShow.value 
-})
- */
+/* searchShow.body.addEventListener('keyup', (event) => {
+  searchShow.value += event.key
+}) */
+
 
 
 
