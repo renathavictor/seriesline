@@ -132,7 +132,7 @@ body {
 }
 
 .form-inline .form-control {
-  width: 400px;
+  width: 300px;
 }
 
 .episodios {
@@ -164,18 +164,27 @@ body {
 }
 
 .btn-outline-danger:hover {
-  color: #CCC);
+  color: #CCC;
 }
 
 .search-show:focus {
   background-color: #CCC;
-  
+}
+
+.btn-search i {
+  transition: all .5s;
+}
+
+.btn-search i:hover {
+  transform: rotate(100deg);
+  transform-origin: center;
 }
 
 .search-show, .btn-search {
   box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.75);
   border-radius: 50px;
 }
+
 
 .btn-search {
   position: relative;
