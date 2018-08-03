@@ -5,10 +5,10 @@ const btnSearch = document.querySelector('.btn-search')
 const searchShow = document.querySelector('.search-show')
 
 /* API's */
-const all = 'http://api.tvmaze.com/shows'
-const search = (nome) => `http://api.tvmaze.com/search/shows?q=${nome}`
-const cast = (id) => `http://api.tvmaze.com/shows/${id}/cast`
-const eps = (id) => `http://api.tvmaze.com/shows/${id}/episodes`
+const all = 'https://api.tvmaze.com/shows'
+const search = (nome) => `https://api.tvmaze.com/search/shows?q=${nome}`
+const cast = (id) => `https://api.tvmaze.com/shows/${id}/cast`
+const eps = (id) => `https://api.tvmaze.com/shows/${id}/episodes`
 
 
 /* Página principal */
@@ -81,7 +81,7 @@ function colocarSerie(valor) {
     showsPage.innerHTML = ''
     //this.blur()
     event.preventDefault()
-    let url = `http://api.tvmaze.com/search/shows?q=${valor}`
+    let url = `https://api.tvmaze.com/search/shows?q=${valor}`
     fetch(url)
       .then(res => res.json())
       .then(json => {      
