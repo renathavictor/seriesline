@@ -32,7 +32,7 @@ function favoritePage(json) {
     if (serie.rating.average > 8.6 && serie.language == 'English')
       text = `
       <div class="serie mr-2 autoplay" onclick="colocarSerie('${serie.name}')">
-        <img class="rounded float-left" src="${serie.image.medium}" alt="Imagem serie">
+        <img class="rounded float-left" src="${serie.image.medium.replace('http', 'https')}" alt="Imagem serie">
         <div class="topright text-center"><p>${serie.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
       </div>
       `
@@ -61,7 +61,9 @@ function getBusca(json) {
     if (serie.rating.average != null) {
       let text = `
         <div class="serie mr-2 autoplay" onclick="colocarSerie('${serie.name}')">
-          <img class="rounded float-left" src="${serie.image.medium}" alt="Imagem serie">
+          < img class = "rounded float-left"
+          src = "${serie.image.medium.replace('http', 'https')}"
+          alt = "Imagem serie" >
           <div class="topright text-center"><p>${serie.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
         </div>
         `
@@ -98,7 +100,7 @@ function boxShow(json) {
   elencoCast(json.id)
   return `
       <div class="show-page">
-        <img src="${json.image.medium}" class="rounded float-left" alt="imagem serie">
+        <img src="${json.image.medium.replace('http', 'https')}" class="rounded float-left" alt="imagem serie">
         <h1 class="text-center text-uppercase">${json.name}</h1>
         <div class="topright text-center icon-show"><p>${json.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
         <div class="info">
@@ -130,7 +132,7 @@ function setCast(id) {
       return json.map(cast => {
         return `
         <div class="actor">
-          <img src="${cast.person.image.medium}" class="rounded float-left" alt="image actor">
+          <img src="${cast.person.image.medium.replace('http', 'https')}" class="rounded float-left" alt="image actor">
           <div class="cast-name">
             <p class="font-weight-bold">${cast.person.name}</p>
             <p>${cast.character.name}</p>
