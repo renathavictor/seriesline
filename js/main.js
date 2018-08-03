@@ -62,7 +62,7 @@ function getBusca(json) {
       let text = `
         <div class="serie mr-2 autoplay" onclick="colocarSerie('${serie.name}')">
           < img class = "rounded float-left"
-          src = "${serie.image.medium.replace('http', 'https')}"
+          src = "${serie.image.medium}"
           alt = "Imagem serie" >
           <div class="topright text-center"><p>${serie.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
         </div>
