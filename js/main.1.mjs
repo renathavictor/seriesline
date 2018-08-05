@@ -10,13 +10,12 @@ $("#modal").iziModal();
 
 $('.collapse').collapse()
 
+
 /* Seletores */
 
 const showsPage = document.querySelector('.shows-page')
 const btnSearch = document.querySelector('.btn-search')
 const searchShow = document.querySelector('.search-show')
-const contentModal = document.querySelector('.modal-content')
-
 
 /* API's */
 const all = 'https://api.tvmaze.com/shows'
@@ -25,10 +24,6 @@ const cast = (id) => `https://api.tvmaze.com/shows/${id}/cast`
 const eps = (id) => `https://api.tvmaze.com/shows/${id}/episodes`
 let seasons = (id) => `https://api.tvmaze.com/shows/${id}/seasons`
 let episode = (id) => `https://api.tvmaze.com/seasons/${id}?embed=episodes`
-
-/* imbd */
-/* const imdb = (tag) => `https://www.imdb.com/title/${tag}`
-<span> <a href="${imdb(json.externals.imdb)}" target="blank"><img src="/img/imdb-logo.png" width="50" alt="imdb"></a></span> */
 
 /* Página principal */
 
@@ -139,19 +134,10 @@ async function elencoCast(id) {
   </div>
   <div class="col episodios">
     <h3>Seasons</h3>
-    <div class="eps d-flex flex-wrap row">
-      <nav aria-label="...">
-        <ul class="pagination pagination-lg">
-        ${await setSeason(id)}
-        </ul>
-      </nav>
-      <div id"seEps"></div>
-    </div>
-  </div>
+    <div class="eps d-flex flex-wrap row"><div class="eps container">${await setEps(id)}</div></div>
   `
   showsPage.insertAdjacentHTML('beforeend', text)
 }
-
 
 
 function setCast(id) {
@@ -172,63 +158,43 @@ function setCast(id) {
     })
 }
 
-async function setSeason(id) {
+
+/* function setSeason(id) {
   return fetch(seasons(id))
       .then(res => res.json())
       .then(json => {
         return json.map(s => {
-          if (s.premiereDate != null) {
-            return `<li class="page-item">
-                      <button class="page-link" data-toggle="modal" data-target="#siteModal" onclick="setEps('${s.id}')">${s.number}</button>
-                    </li>
-                    `
-          }
+          return `
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${s.number}" aria-expanded="true" aria-controls="collapse${s.number}" >
+                      Season ${s.number}
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapse${s.number}" id="modal"  class="collapse" aria-labelledby="heading${s.number}" data-parent="#accordionExample">
+                  <div class="card-body">
+                    ${setEps(s.id)}
+                  </div>
+                </div>  
+              </div>
+            </div>
+            `
           }).join('')
         })
 }
-
-window.setEps = function (id) {
-  return fetch(episode(id))
-    .then(res => res.json())
-    .then(json => {
-      json = json._embedded.episodes
-      let text = json.map(ep => ep.number == null ? `<p>Special episode - ${ep.name}</p>` : `<p>Episode ${ep.number} - ${ep.name} - airdate: ${ep.airdate.replace(/(\d{4})-(\d{2})-(\d{2})/, '$3/$2/$1')}</p>`).join('')
-      text = `
-      <div class="modal-header bg-dark">
-        <h5 class="modal-title text-uppercase text-center">Season ${json[0].season}</h5>
-        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-      </div>
-      <div class="modal-body">
-        ${text}
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" data-dismiss="modal">close</button>
-      </div>
-      `
-      contentModal.innerHTML = text
-    })
-}        
-
-
-/* window.setEps = function(id) {
-  return fetch(episode(id))
-  .then(res => res.json())
-  .then(json => {
-    json = json._embedded.episodes
-    let text = json.map(ep => ep.number == null ? `<img src="${ep.image.medium.replace('http', 'https')}" alt="imagem episodio"><p>Special episode - ${ep.name}</p>` : `<p>Episode ${ep.number} - ${ep.name}</p>`).join('')
-    text = `
-    <div class="modal-header">
-      <h5 class="modal-title">Season ${json[0].season}</h5>
-      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-    </div>
-    <div class="modal-body">
-      ${text}
-    </div>
-      `
-    contentModal.innerHTML = text
+ */
+/* async function setEps(id) {
+  return await fetch(episode(id))
+      .then(res => res.json())
+      .then(json => {
+        json = json._embedded.episodes
+        return json.map(ep => ep.number == null ? `<p>Special episode - ${ep.name}</p>` : `<p>Episode ${ep.number} - ${ep.name}</p>`).join('')
         })
-}         */
-
+}        
+ */
 
 
 /* 
@@ -263,7 +229,7 @@ function setSeason(id) {
 
 //season.filter((e, i, arr) => arr.indexOf(e) == i)
 
-/* function setEps(id) {
+function setEps(id) {
   return fetch(eps(id))
     .then(res => res.json())
     .then(json => {
@@ -273,7 +239,7 @@ function setSeason(id) {
         `
       }).join('')
     })
-} */
+}
 
 /* Validação */
 
@@ -309,7 +275,6 @@ $(document).ready(function() {
     });
 });
 
-/* Modal */
 
 $(document).on('click', '.trigger', function (event) {
   event.preventDefault();
