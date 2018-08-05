@@ -1,3 +1,4 @@
+
 * {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -16,7 +17,16 @@ footer {
 
 body {
   height: 100%;
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
+  /* background: linear-gradient(to right, #59c173, #a17fe0, #5d26c1); */
+  /* background: linear-gradient(0deg, #BCC5CE 0%, rgb(173, 146, 156) 98%),
+  radial-gradient(at top left, rgba(250, 180, 180, 0.3) 0%, rgba(255, 0, 0, 0.3) 100%);
+  background-blend-mode: screen; */
+ /*  background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%); */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%),
+  radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
+  background-blend-mode: multiply,
+  multiply;
 }
 
 .navbar-dark, .bg-dark {
@@ -119,7 +129,7 @@ body {
 }
 
 .actor {
-  width: 250px;
+  width: 200px;
   margin: 10px;
 }
 .actor img {
@@ -160,15 +170,16 @@ body {
 
 .btn-outline-danger {
   background-color: rgba(192, 0, 0, 1);
-  color: #CCC;
+  color: #ccc;
 }
 
 .btn-outline-danger:hover {
-  color: #CCC;
+  color: #ccc;
 }
 
 .search-show:focus {
-  background-color: #CCC;
+  /* background-color: #ccc; */
+  background-color: rgb(165, 165, 165);
 }
 
 .btn-search i {
