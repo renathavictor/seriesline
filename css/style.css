@@ -23,10 +23,11 @@ body {
   radial-gradient(at top left, rgba(250, 180, 180, 0.3) 0%, rgba(255, 0, 0, 0.3) 100%);
   background-blend-mode: screen; */
  /*  background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%); */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%),
+  /* background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%),
   radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
   background-blend-mode: multiply,
-  multiply;
+  multiply; */
+  background: linear-gradient(to right, #1f1c18e7, #8e0e00af, #1f1c18e7);
 }
 
 .navbar-dark, .bg-dark {
@@ -178,8 +179,9 @@ body {
 }
 
 .search-show:focus {
-  /* background-color: #ccc; */
-  background-color: rgb(165, 165, 165);
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  width: 380px;
+  transition: all .3s;
 }
 
 .btn-search i {

@@ -195,11 +195,14 @@ window.setEps = function (id) {
       text = `
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-uppercase text-center">Season ${json[0].season}</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
       </div>
       <div class="modal-body">
         ${text}
       </div>
-      <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown">Close</button>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal">close</button>
+      </div>
       `
       contentModal.innerHTML = text
     })
@@ -311,11 +314,8 @@ $(document).on('click', '.trigger', function (event) {
   event.preventDefault();
   // $('#modal').iziModal('setZindex', 99999);
   // $('#modal').iziModal('open', { zindex: 99999 });
-  $('#modal').iziModal('open', {
-  });
+  $('#modal').iziModal('open');
 });
-
-
 
 /* // Se for fazer por genero
 function comedy(all) {
