@@ -6,11 +6,10 @@ import iziModal from 'izimodal/js/iziModal';
 $.fn.iziModal = iziModal;
 $("#modal").iziModal();
 
-
 $('.collapse').collapse()
 
 $(function () {
-  $('.example-popover').popover({
+  $('.popover').popover({
     container: 'body'
   })
 })
@@ -30,9 +29,6 @@ const eps = (id) => `https://api.tvmaze.com/shows/${id}/episodes`
 let seasons = (id) => `https://api.tvmaze.com/shows/${id}/seasons`
 let episode = (id) => `https://api.tvmaze.com/seasons/${id}?embed=episodes`
 
-/* imbd */
-/* const imdb = (tag) => `https://www.imdb.com/title/${tag}`
-<span> <a href="${imdb(json.externals.imdb)}" target="blank"><img src="/img/imdb-logo.png" width="50" alt="imdb"></a></span> */
 
 /* Página principal */
 
@@ -120,12 +116,13 @@ window.colocarSerie = function(valor) {
 function boxShow(json) { 
   elencoCast(json.id)
   return `
-      <div class="show-page">
+      <div class="show-page show-top">
         <img src="${json.image.medium.replace('http', 'https')}" class="rounded float-left" alt="imagem serie">
         <h1 class="text-center text-uppercase">${json.name}</h1>
         <div class="topright text-center icon-show"><p>${json.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
         <div class="info">
-          <div class="row"><p>${json.summary}</p>
+          <div class="row">
+            <p>${json.summary}</p>
             <p class="col-6"><b>Genre:</b> ${json.genres.join(' | ')}</p>
             <p class="col-6"><b>Runtime:</b> ${json.runtime} min</p>
             <p class="col-6"><b>Premiered:</b> ${json.premiered.replace(/(\d{4})-(\d{2})-(\d{2})/, `$3/$2/$1`)}</p>
@@ -141,11 +138,11 @@ function boxShow(json) {
 async function elencoCast(id) {
   let text = `
   <div class="col">
-    <h3>Cast</h3>
+    <h3 class="text-uppercase">Cast</h3>
     <div class="cast d-flex flex-wrap row">${await setCast(id)}</div>  
   </div>
   <div class="col episodios">
-    <h3>Seasons</h3>
+    <h3 class="text-uppercase">Seasons</h3>
     <div class="eps d-flex flex-wrap row">
       <nav aria-label="...">
         <ul class="pagination pagination-lg">
@@ -177,23 +174,7 @@ function setCast(id) {
     })
 }
 
-/* function setCast(id) {
-  return fetch(cast(id))
-    .then(res => res.json())
-    .then(json => {
-      return json.map(cast => {
-        return `
-        <div class="actor">
-          <img src="${cast.person.image.medium.replace('http', 'https')}" class="rounded float-left" alt="image actor" data-toggle="tooltip" data-placement="bottom" title="Tooltip on top">
-          <div class="cast-name">
-            <p class="font-weight-bold">${cast.person.name}</p>
-            <p>${cast.character.name}</p>
-          </div>  
-        </div>
-        `
-      }).join('')  
-    })
-} */
+
 
 async function setSeason(id) {
   return fetch(seasons(id))
@@ -215,7 +196,7 @@ window.setEps = function (id) {
     .then(res => res.json())
     .then(json => {
       json = json._embedded.episodes
-      let text = json.map(ep => ep.number == null ? `<p>Special episode - ${ep.name}</p>` : `<p>Episode ${ep.number} - ${ep.name} - airdate: ${ep.airdate.replace(/(\d{4})-(\d{2})-(\d{2})/, '$3/$2/$1')}</p>`).join('')
+      let text = json.map(ep => ep.number == null ? `<p>Special episode - ${ep.name}</p>` : `<p><b>Episode ${ep.number} -</b> ${ep.name} - <b>Airdate: </b>${ep.airdate.replace(/(\d{4})-(\d{2})-(\d{2})/, '$3/$2/$1')}</p>`).join('')
       text = `
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-uppercase text-center">Season ${json[0].season}</h5>
@@ -230,87 +211,12 @@ window.setEps = function (id) {
 }        
 
 
-/* window.setEps = function(id) {
-  return fetch(episode(id))
-  .then(res => res.json())
-  .then(json => {
-    json = json._embedded.episodes
-    let text = json.map(ep => ep.number == null ? `<img src="${ep.image.medium.replace('http', 'https')}" alt="imagem episodio"><p>Special episode - ${ep.name}</p>` : `<p>Episode ${ep.number} - ${ep.name}</p>`).join('')
-    text = `
-    <div class="modal-header">
-      <h5 class="modal-title">Season ${json[0].season}</h5>
-      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-    </div>
-    <div class="modal-body">
-      ${text}
-    </div>
-      `
-    contentModal.innerHTML = text
-        })
-}         */
-
-
-
-/* 
-function setSeason(id) {
-  return fetch(eps(id))
-    .then(res => res.json())
-    .then(json => {
-      let season = json.map(e => e.season)
-      season = season.filter((e, i, arr) => arr.indexOf(e) == i)
-      return season.map( se => {
-        return `
-        <div class="accordion" id="accordionExample">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${se}" aria-expanded="true" aria-controls="collapse${se}" >
-                  Season ${se.length == 1 ? '0'+ se : se}
-                </button>
-              </h5>
-            </div>
-            <div id="collapse${se}" class="collapse" aria-labelledby="heading${se}" data-parent="#accordionExample">
-              <div class="card-body">
-              ${setEps(json)}
-              </div>
-            </div>  
-          </div>
-        </div>
-        `}).join('')
-      })
-    }
- */
-
-//season.filter((e, i, arr) => arr.indexOf(e) == i)
-
-/* function setEps(id) {
-  return fetch(eps(id))
-    .then(res => res.json())
-    .then(json => {
-      return json.map(ep => {
-        return `
-          <p>S${ep.season}EP${ep.number} - ${ep.name} - airdate: ${ep.airdate.replace(/(\d{4})-(\d{2})-(\d{2})/, `$3/$2/$1`)}</p>
-        `
-      }).join('')
-    })
-} */
-
 /* Validação */
 
 function validarSerie(string) {
   return string.match(/^[0-9A-Z]+/gi) ? true : false
 }
 
-/* Slick */
-
-
-/* $('.autoplay').slick({
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2000,
-});
- */
 
 /* Botão de scroll */
 
@@ -341,6 +247,19 @@ $(document).on('click', '.trigger', function (event) {
 
 $('#modal').iziModal('setSubtitle', 'Subtitle');
 
+
+/* Slick */
+
+
+/* $('.autoplay').slick({
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+});
+ */
+
+
 /* // Se for fazer por genero
 function comedy(all) {
   fetch(all)
@@ -362,57 +281,6 @@ function comedy(all) {
 }
 comedy(all) */
 
-/* 
-function setEps(id) {
-  return fetch(eps(id))
-    .then(res => res.json())
-    .then(json => {
-      return json.map(ep => {
-         return `
-        <div class="eps container">
-          <h4>Season ${ep.season}</h4>
-          <p>Episode ${ep.number} - ${ep.name} - airdate: ${ep.airdate.replace(/(\d{4})-(\d{2})-(\d{2})/, `$3/$2/$1`)}</p>
-        </div>`
-      }).join('')
-    })
-}
-
-*/
-/*  Barra de pesquisa */
-
-/* searchShow.addEventListener('keyup', (event) => {
-  searchShow.value 
-})
- */
-
-
-
-/* async function episodios(id) {
-  let texto = `
-  <div class="container">
-    <h3>Episódios</h3>
-    <div class="eps d-flex justify-content-around flex-wrap row">${await setEps(id)}</div>
-  `
-  showsPage.insertAdjacentHTML('beforeend', texto)
-} */
-
-
-/* function episodios(id) {
-  fetch(eps(id))
-    .then(res => res.json())
-    .then(json => {
-      json.map(ep => {
-        console.log(ep)
-        //console.log(ep.airdate.replace(/(\d{4})-(\d{2})-(\d{2})/, `$3/$2/$1`))
-        let texto = `
-        <h4>Season ${ep.season}</h4>
-        <p>Episode ${ep.number} - ${ep.name} - airdate: ${ep.airdate.replace(/(\d{4})-(\d{2})-(\d{2})/, `
-        $3 / $2 / $1 `)}</p>
-        `
-        showsPage.insertAdjacentHTML('beforeend', texto)
-      })
-    })
-} */
 
 
 
