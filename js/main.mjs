@@ -4,6 +4,7 @@ import $ from 'jquery';
 window.$ = $;
 import iziModal from 'izimodal/js/iziModal';
 $.fn.iziModal = iziModal;
+
 $("#modal").iziModal();
 
 $('.collapse').collapse()
@@ -13,6 +14,8 @@ $(function () {
     container: 'body'
   })
 })
+
+
 /* Seletores */
 
 const showsPage = document.querySelector('.shows-page')
@@ -40,22 +43,7 @@ function favorite(url) {
     .then(json => favoritePage(json))
 }
 
-
 favorite(all)
-
-
-btnMenu.forEach(button => button.addEventListener('click', (event) => {
-  event.target.blur()
-  let genre = event.target.innerHTML
-  if (genre == 'Comedy') {
-    genero(genre)
-  } else if (genre == 'Drama') {
-    genero(genre)
-  } else if (genre = 'Action') {
-    genero(genre)
-  }  
-}))
-
 
 /* Funções de inserção no HTML */
 
@@ -69,9 +57,48 @@ function favoritePage(json) {
         <div class="topright text-center"><p>${serie.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
       </div>
       `
-      showsPage.insertAdjacentHTML('beforeend', text)
-  }) 
+    showsPage.insertAdjacentHTML('beforeend', text)
+  })
 }
+
+
+/* Por gênero da série */
+
+btnMenu.forEach(button => button.addEventListener('click', (event) => {
+  event.target.blur()
+  let genre = event.target.innerHTML
+  if (genre == 'Comedy') {
+    genero(genre)
+  } else if (genre == 'Drama') {
+    genero(genre)
+  } else if (genre = 'Action') {
+    genero(genre)
+  }  
+}))
+
+function genero(tipo) {
+  showsPage.innerHTML = ''
+  fetch(all)
+    .then(res => res.json())
+    .then(json => {
+      for (let i of json) {
+        let text = ''
+        if (i.genres[0] == tipo) {
+          if (i.rating.average > 7 && i.language == 'English') {
+            text = `
+              <div class="serie mr-2" onclick="colocarSerie('${i.name.replace(/'/, '')}')">
+                <img class="rounded float-left autoplay" src="${i.image.medium.replace('http', 'https')}" alt="Imagem serie">
+                <div class="topright text-center"><p>${i.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
+              </div>
+              `
+          }
+        }
+
+        showsPage.insertAdjacentHTML('beforeend', text)
+      }
+    })
+}
+
 
 
 /* Pesquisa */
@@ -188,7 +215,6 @@ function setCast(id) {
 }
 
 
-
 async function setSeason(id) {
   return fetch(seasons(id))
       .then(res => res.json())
@@ -273,28 +299,5 @@ $('#modal').iziModal('setSubtitle', 'Subtitle');
  */
 
 
-// Se for fazer por genero
-function genero(tipo) {
-  showsPage.innerHTML = ''
-  fetch(all)
-    .then(res => res.json())
-    .then(json => {
-      for (let i of json) {
-        let text = ''
-        if (i.genres[0] == tipo) {
-          if (i.rating.average > 7 && i.language == 'English') {
-            text = `
-              <div class="serie mr-2" onclick="colocarSerie('${i.name.replace(/'/, '')}')">
-                <img class="rounded float-left autoplay" src="${i.image.medium.replace('http', 'https')}" alt="Imagem serie">
-                <div class="topright text-center"><p>${i.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
-              </div>
-              `
-          } 
-        } 
-        
-        showsPage.insertAdjacentHTML('beforeend', text)
-      }
-    })
-}
 
 

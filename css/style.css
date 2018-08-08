@@ -31,9 +31,38 @@ body {
 
 }
 
+/* Navbar */
 .navbar-dark, .bg-dark {
   background-color: #222!important;
 } 
+
+.navbar span {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5em;
+}
+
+.navbar .btn-group button.btn {
+  background-color: rgba(192, 0, 0, 1);
+  border: none;
+  box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.75);
+}
+
+.navbar .btn-group button.btn:hover {
+  background-color: #dc3545;
+  transition: all .3s;
+}
+
+.navbar .btn-group .dropdown-menu button {
+  cursor: pointer;
+}
+
+.navbar .btn-group .dropdown-menu button:hover {
+  cursor: pointer;
+  background-color: rgba(102, 102, 102, 0.445);
+  transition: all .3s;
+}
+
+/* Pagina principal */
 
 .shows-page {
   position: relative;
@@ -43,6 +72,8 @@ body {
   padding: 3em;
   margin-top: 80px;
 }
+
+/* Pagina da série */
 
 .shows-page h1 {
   align-items: center;
@@ -161,6 +192,8 @@ body {
   margin-top: 20px;
 }
 
+/* Botão scroll */
+
 .scrollToTop {
   position: fixed;
   bottom: 40px;
@@ -179,6 +212,8 @@ body {
   background: #222;
   color: rgba(192, 0, 0, 1);
 }
+
+/* Barra de pesquisa */
 
 .btn-outline-danger {
   background-color: rgba(192, 0, 0, 1);
@@ -215,10 +250,9 @@ body {
   right: 42px;
 }
 
-.navbar span {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.5em;
-}
+
+
+/* Modal */
 
 .modal {
   top: 100px;
@@ -231,26 +265,5 @@ body {
 .page-item button {
   color: #222;
   font-weight: bold;
-}
-
-.navbar .btn-group button.btn {
-  background-color: rgba(192, 0, 0, 1);
-  border: none;
-  box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.75);
-}
-
-.navbar .btn-group button.btn:hover {
-  background-color: #dc3545;
-  transition: all .3s;
-
-}
-.navbar .btn-group .dropdown-menu button  {
-  cursor: pointer;
-}
-
-.navbar .btn-group .dropdown-menu button:hover {
-  cursor: pointer;
-  background-color: rgba(102, 102, 102, 0.445);
-  transition: all .3s;
 }
 
