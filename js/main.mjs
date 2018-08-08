@@ -3,7 +3,6 @@ import 'popper.js'
 import $ from 'jquery';
 window.$ = $;
 import iziModal from 'izimodal/js/iziModal';
-import { domainToASCII } from 'url';
 $.fn.iziModal = iziModal;
 $("#modal").iziModal();
 
