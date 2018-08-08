@@ -15,7 +15,7 @@ $(function () {
   })
 })
 
-
+const noImg = 'https://static.tvmaze.com/images/no-img/no-img-portrait-text.png'
 /* Seletores */
 
 const showsPage = document.querySelector('.shows-page')
@@ -35,7 +35,7 @@ let episode = (id) => `https://api.tvmaze.com/seasons/${id}?embed=episodes`
 
 /* Página principal */
 
-/* Favoritas */
+/* Todas */
 
 function favorite(url) {
   fetch(url)
@@ -45,7 +45,6 @@ function favorite(url) {
 
 favorite(all)
 
-/* Funções de inserção no HTML */
 
 function favoritePage(json) {
   json.map(serie => {
@@ -203,7 +202,7 @@ function setCast(id) {
       return json.map(cast => {
         return `
         <div class="actor">
-          <img src="${cast.person.image.medium.replace('http', 'https')}" class="rounded float-left" alt="image actor" data-toggle="popover" title="${cast.person.name}">
+          <img src="${cast.person.image == null ? noImg : cast.person.image.medium.replace('http', 'https')}" class="rounded float-left" alt="image actor" data-toggle="popover" title="${cast.person.name}">
           <div class="cast-name">
             <p class="font-weight-bold">${cast.person.name}</p>
             <p>${cast.character.name}</p>
