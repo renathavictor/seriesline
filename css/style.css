@@ -216,3 +216,8 @@ body {
 .modal-header {
   color: #eee;
 }
+
+.page-item button {
+  color: #222;
+  font-weight: bold;
+}

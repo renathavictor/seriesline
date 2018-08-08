@@ -92,7 +92,6 @@ function getBusca(json) {
 /* TV Show Page */
 
 btnSearch.addEventListener('click', () => searchBar(searchShow.value))
-//btnSearch.addEventListener('click', () => colocarSerie(searchShow.value))
 
 
 window.colocarSerie = function(valor) {
@@ -121,9 +120,13 @@ function boxShow(json) {
         <h1 class="text-center text-uppercase">${json.name}</h1>
         <div class="topright text-center icon-show"><p>${json.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
         <div class="info">
-          <div class="row"><p>${json.summary}</p></div>
-          <div class="row"><p class="col"><b>Genre:</b> ${json.genres.join(' | ')}</p></div>
-          <div class="row"><p class="col"><b>Premiered:</b> ${json.premiered.replace(/(\d{4})-(\d{2})-(\d{2})/, `$3/$2/$1`)}</p><p class="col"><b>Status:</b> ${json.status}</p></div>
+          <div class="row"><p>${json.summary}</p>
+            <p class="col-6"><b>Genre:</b> ${json.genres.join(' | ')}</p>
+            <p class="col-6"><b>Runtime:</b> ${json.runtime} min</p>
+            <p class="col-6"><b>Premiered:</b> ${json.premiered.replace(/(\d{4})-(\d{2})-(\d{2})/, `$3/$2/$1`)}</p>
+            <p class="col-6"><b>Status:</b> ${json.status}</p>
+            <p class="col-6"><b>Network:</b> ${json.network.name == null ? json.webChannel : json.network.name}</p>
+          </div>
         </div>
       </div>
       `
@@ -315,7 +318,7 @@ $(document).on('click', '.trigger', function (event) {
   });
 });
 
-
+$('#modal').iziModal('setSubtitle', 'Subtitle');
 
 /* // Se for fazer por genero
 function comedy(all) {
