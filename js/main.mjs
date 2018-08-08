@@ -9,6 +9,11 @@ $("#modal").iziModal();
 
 $('.collapse').collapse()
 
+$(function () {
+  $('.example-popover').popover({
+    container: 'body'
+  })
+})
 /* Seletores */
 
 const showsPage = document.querySelector('.shows-page')
@@ -125,7 +130,7 @@ function boxShow(json) {
             <p class="col-6"><b>Runtime:</b> ${json.runtime} min</p>
             <p class="col-6"><b>Premiered:</b> ${json.premiered.replace(/(\d{4})-(\d{2})-(\d{2})/, `$3/$2/$1`)}</p>
             <p class="col-6"><b>Status:</b> ${json.status}</p>
-            <p class="col-6"><b>Network:</b> ${json.network.name == null ? json.webChannel : json.network.name}</p>
+            <p class="col-6"><b>Network:</b> ${json.network == null ? json.webChannel.name : json.network.name}</p>
           </div>
         </div>
       </div>
@@ -154,8 +159,6 @@ async function elencoCast(id) {
   showsPage.insertAdjacentHTML('beforeend', text)
 }
 
-
-
 function setCast(id) {
   return fetch(cast(id))
     .then(res => res.json())
@@ -163,7 +166,25 @@ function setCast(id) {
       return json.map(cast => {
         return `
         <div class="actor">
-          <img src="${cast.person.image.medium.replace('http', 'https')}" class="rounded float-left" alt="image actor">
+          <img src="${cast.person.image.medium.replace('http', 'https')}" class="rounded float-left" alt="image actor" data-toggle="popover" title="${cast.person.name}">
+          <div class="cast-name">
+            <p class="font-weight-bold">${cast.person.name}</p>
+            <p>${cast.character.name}</p>
+          </div>  
+        </div>
+        `
+      }).join('')
+    })
+}
+
+/* function setCast(id) {
+  return fetch(cast(id))
+    .then(res => res.json())
+    .then(json => {
+      return json.map(cast => {
+        return `
+        <div class="actor">
+          <img src="${cast.person.image.medium.replace('http', 'https')}" class="rounded float-left" alt="image actor" data-toggle="tooltip" data-placement="bottom" title="Tooltip on top">
           <div class="cast-name">
             <p class="font-weight-bold">${cast.person.name}</p>
             <p>${cast.character.name}</p>
@@ -172,7 +193,7 @@ function setCast(id) {
         `
       }).join('')  
     })
-}
+} */
 
 async function setSeason(id) {
   return fetch(seasons(id))
