@@ -239,6 +239,11 @@ body {
   box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.75);
 }
 
+.navbar .btn-group button.btn:hover {
+  background-color: #dc3545;
+  transition: all .3s;
+
+}
 .navbar .btn-group .dropdown-menu button  {
   cursor: pointer;
 }
@@ -246,5 +251,6 @@ body {
 .navbar .btn-group .dropdown-menu button:hover {
   cursor: pointer;
   background-color: rgba(102, 102, 102, 0.445);
+  transition: all .3s;
 }
 
