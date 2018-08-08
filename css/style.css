@@ -231,3 +231,19 @@ body {
   color: #222;
   font-weight: bold;
 }
+
+.navbar .btn-group button.btn {
+  background-color: rgba(192, 0, 0, 1);
+  border: none;
+  box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.75);
+}
+
+.navbar .btn-group .dropdown-menu button  {
+  cursor: pointer;
+}
+
+.navbar .btn-group .dropdown-menu button:hover {
+  cursor: pointer;
+  background-color: rgba(102, 102, 102, 0.445);
+}
+

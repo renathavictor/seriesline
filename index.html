@@ -17,14 +17,23 @@
 <body>
   <nav class="navbar navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-      <img src="img/TV-Icon.png" width="85" height="60" class="d-inline-block align-top" alt="">
-      <span class="align-bottom font-weight-bold">Series Line</span>
-      </a>
-    <form class="form-inline my-3 my-lg-4 d-flex justify-content-center align-items-center">
-      <input class="form-control mr-sm-0 search-show" type="search" placeholder="Search TV Show..." aria-label="Search">
-      <button class="btn btn-outline-danger my-2 my-sm-0 btn-search" type="submit"><i class="fas fa-search"></i></button>
-    </form>
+        <a class="navbar-brand" href="index.html">
+        <img src="img/TV-Icon.png" width="85" height="60" class="d-inline-block align-top" alt="">
+        <span class="align-bottom font-weight-bold">Series Line</span>
+        </a>
+      <form class="form-inline my-3 my-lg-4 d-flex justify-content-center align-items-center">
+        <input class="form-control mr-sm-0 search-show" type="search" placeholder="Search TV Show..." aria-label="Search">
+        <button class="btn btn-outline-danger my-2 my-sm-0 btn-search" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          GENRE
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <button class="dropdown-item" type="button">Drama</button>
+          <button class="dropdown-item" type="button">Comedy</button>
+          <button class="dropdown-item" type="button">Action</button>
+        </div>
     </div>
   </nav>
   <main class="shows-page container border shadow mb-5 bg-white rounded">

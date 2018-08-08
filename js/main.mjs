@@ -3,6 +3,7 @@ import 'popper.js'
 import $ from 'jquery';
 window.$ = $;
 import iziModal from 'izimodal/js/iziModal';
+import { domainToASCII } from 'url';
 $.fn.iziModal = iziModal;
 $("#modal").iziModal();
 
@@ -19,7 +20,7 @@ const showsPage = document.querySelector('.shows-page')
 const btnSearch = document.querySelector('.btn-search')
 const searchShow = document.querySelector('.search-show')
 const contentModal = document.querySelector('.modal-content')
-
+const btnMenu = Array.from(document.querySelectorAll('.dropdown-menu button'))
 
 /* API's */
 const all = 'https://api.tvmaze.com/shows'
@@ -42,6 +43,19 @@ function favorite(url) {
 
 
 favorite(all)
+
+
+btnMenu.forEach(button => button.addEventListener('click', (event) => {
+  event.target.blur()
+  let genre = event.target.innerHTML
+  if (genre == 'Comedy') {
+    genero(genre)
+  } else if (genre == 'Drama') {
+    genero(genre)
+  } else if (genre = 'Action') {
+    genero(genre)
+  }  
+}))
 
 
 /* Funções de inserção no HTML */
@@ -260,28 +274,28 @@ $('#modal').iziModal('setSubtitle', 'Subtitle');
  */
 
 
-/* // Se for fazer por genero
-function comedy(all) {
+// Se for fazer por genero
+function genero(tipo) {
+  showsPage.innerHTML = ''
   fetch(all)
     .then(res => res.json())
     .then(json => {
       for (let i of json) {
         let text = ''
-        if (i.genres[0] == 'Comedy')
-          if (i.rating.average > 7 && i.language == 'English')
+        if (i.genres[0] == tipo) {
+          if (i.rating.average > 7 && i.language == 'English') {
             text = `
               <div class="serie mr-2" onclick="colocarSerie('${i.name.replace(/'/, '')}')">
                 <img class="rounded float-left autoplay" src="${i.image.medium.replace('http', 'https')}" alt="Imagem serie">
                 <div class="topright text-center"><p>${i.rating.average.toFixed(1)}</p><i class="fas fa-star"></i></div>
               </div>
               `
+          } 
+        } 
+        
         showsPage.insertAdjacentHTML('beforeend', text)
       }
     })
 }
-comedy(all) */
-
-
-
 
 
